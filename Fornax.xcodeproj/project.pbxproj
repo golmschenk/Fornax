@@ -106,8 +106,8 @@
 			children = (
 				653607CD21B39BBC00FE59F6 /* Fornax */,
 				653607E521B39BBD00FE59F6 /* FornaxTests */,
-				653607F021B39BBD00FE59F6 /* FornaxUITests */,
 				6536080A21B3A25200FE59F6 /* FornaxFunctionalTests */,
+				653607F021B39BBD00FE59F6 /* FornaxUITests */,
 				6536080121B39C2600FE59F6 /* TestResources */,
 				6536081921B3A66C00FE59F6 /* SupportingFiles */,
 				653607CC21B39BBC00FE59F6 /* Products */,
@@ -545,7 +545,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Fornax/Fornax.entitlements;
+				CODE_SIGN_ENTITLEMENTS = SupportingFiles/Fornax.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/SupportingFiles/Info.plist";
@@ -563,7 +563,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Fornax/Fornax.entitlements;
+				CODE_SIGN_ENTITLEMENTS = SupportingFiles/Fornax.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/SupportingFiles/Info.plist";

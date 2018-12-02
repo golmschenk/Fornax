@@ -9,5 +9,8 @@
 import Foundation
 
 class Fits {
-
+    var header = 0
+    init(fromPath filePath: String) {
+        
+    }
 }
