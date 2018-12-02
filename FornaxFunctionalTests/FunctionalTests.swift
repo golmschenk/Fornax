@@ -1,5 +1,5 @@
 //
-//  FornaxTests.swift
+//  FunctionalTests.swift
 //  FornaxTests
 //
 //  Created by Greg Olmschenk on 12/1/18.
@@ -9,18 +9,22 @@
 import XCTest
 @testable import Fornax
 
-class FornaxTests: XCTestCase {
+class FunctionalTests: XCTestCase {
+    
+    var path:String!
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        let bundle = Bundle(for: type(of: self))
+        path = bundle.path(forResource: "ExampleFitsFile", ofType: "fits")!
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testForFits() {
-        let _ = Fits()
+    func testCanReadBasicFitsHeaderInformation() {
+        //var fits = Fits(fromPath: path)
+        XCTFail("Finish the test!")
     }
 
 }

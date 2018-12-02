@@ -15,7 +15,11 @@
 		653607DB21B39BBD00FE59F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 653607D921B39BBD00FE59F6 /* Main.storyboard */; };
 		653607E721B39BBD00FE59F6 /* FornaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653607E621B39BBD00FE59F6 /* FornaxTests.swift */; };
 		653607F221B39BBD00FE59F6 /* FornaxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653607F121B39BBD00FE59F6 /* FornaxUITests.swift */; };
-		6536080021B39BDF00FE59F6 /* FunctionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653607FF21B39BDF00FE59F6 /* FunctionalTests.swift */; };
+		6536080321B39FFA00FE59F6 /* ExampleFitsFile.fits in Resources */ = {isa = PBXBuildFile; fileRef = 6536080221B39FFA00FE59F6 /* ExampleFitsFile.fits */; };
+		6536081321B3A27C00FE59F6 /* FunctionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653607FF21B39BDF00FE59F6 /* FunctionalTests.swift */; };
+		6536081521B3A3F500FE59F6 /* ExampleFitsFile.fits in Resources */ = {isa = PBXBuildFile; fileRef = 6536080221B39FFA00FE59F6 /* ExampleFitsFile.fits */; };
+		6536081621B3A3F500FE59F6 /* ExampleFitsFile.fits in Resources */ = {isa = PBXBuildFile; fileRef = 6536080221B39FFA00FE59F6 /* ExampleFitsFile.fits */; };
+		6536081C21B3A6A200FE59F6 /* Fits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6536081B21B3A6A200FE59F6 /* Fits.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +31,13 @@
 			remoteInfo = Fornax;
 		};
 		653607EE21B39BBD00FE59F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 653607C321B39BBC00FE59F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 653607CA21B39BBC00FE59F6;
+			remoteInfo = Fornax;
+		};
+		6536080E21B3A25200FE59F6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 653607C321B39BBC00FE59F6 /* Project object */;
 			proxyType = 1;
@@ -52,6 +63,10 @@
 		653607F121B39BBD00FE59F6 /* FornaxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FornaxUITests.swift; sourceTree = "<group>"; };
 		653607F321B39BBD00FE59F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		653607FF21B39BDF00FE59F6 /* FunctionalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalTests.swift; sourceTree = "<group>"; };
+		6536080221B39FFA00FE59F6 /* ExampleFitsFile.fits */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ExampleFitsFile.fits; sourceTree = "<group>"; };
+		6536080921B3A25200FE59F6 /* FornaxFunctionalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FornaxFunctionalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6536080D21B3A25200FE59F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6536081B21B3A6A200FE59F6 /* Fits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fits.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +91,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6536080621B3A25200FE59F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -85,6 +107,9 @@
 				653607CD21B39BBC00FE59F6 /* Fornax */,
 				653607E521B39BBD00FE59F6 /* FornaxTests */,
 				653607F021B39BBD00FE59F6 /* FornaxUITests */,
+				6536080A21B3A25200FE59F6 /* FornaxFunctionalTests */,
+				6536080121B39C2600FE59F6 /* TestResources */,
+				6536081921B3A66C00FE59F6 /* SupportingFiles */,
 				653607CC21B39BBC00FE59F6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -95,6 +120,7 @@
 				653607CB21B39BBC00FE59F6 /* Fornax.app */,
 				653607E221B39BBD00FE59F6 /* FornaxTests.xctest */,
 				653607ED21B39BBD00FE59F6 /* FornaxUITests.xctest */,
+				6536080921B3A25200FE59F6 /* FornaxFunctionalTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,13 +128,12 @@
 		653607CD21B39BBC00FE59F6 /* Fornax */ = {
 			isa = PBXGroup;
 			children = (
-				653607CE21B39BBC00FE59F6 /* AppDelegate.swift */,
-				653607D021B39BBC00FE59F6 /* ViewController.swift */,
-				653607D221B39BBC00FE59F6 /* Document.swift */,
+				6536081A21B3A68D00FE59F6 /* Models */,
+				6536081821B3A63B00FE59F6 /* ViewControllers */,
 				653607D721B39BBD00FE59F6 /* Assets.xcassets */,
+				653607CE21B39BBC00FE59F6 /* AppDelegate.swift */,
+				653607D221B39BBC00FE59F6 /* Document.swift */,
 				653607D921B39BBD00FE59F6 /* Main.storyboard */,
-				653607DC21B39BBD00FE59F6 /* Info.plist */,
-				653607DD21B39BBD00FE59F6 /* Fornax.entitlements */,
 				653607D421B39BBC00FE59F6 /* Document.xcdatamodeld */,
 			);
 			path = Fornax;
@@ -117,10 +142,8 @@
 		653607E521B39BBD00FE59F6 /* FornaxTests */ = {
 			isa = PBXGroup;
 			children = (
-				6536080121B39C2600FE59F6 /* TestResources */,
 				653607E621B39BBD00FE59F6 /* FornaxTests.swift */,
 				653607E821B39BBD00FE59F6 /* Info.plist */,
-				653607FF21B39BDF00FE59F6 /* FunctionalTests.swift */,
 			);
 			path = FornaxTests;
 			sourceTree = "<group>";
@@ -137,8 +160,43 @@
 		6536080121B39C2600FE59F6 /* TestResources */ = {
 			isa = PBXGroup;
 			children = (
+				6536080221B39FFA00FE59F6 /* ExampleFitsFile.fits */,
 			);
 			path = TestResources;
+			sourceTree = "<group>";
+		};
+		6536080A21B3A25200FE59F6 /* FornaxFunctionalTests */ = {
+			isa = PBXGroup;
+			children = (
+				653607FF21B39BDF00FE59F6 /* FunctionalTests.swift */,
+				6536080D21B3A25200FE59F6 /* Info.plist */,
+			);
+			path = FornaxFunctionalTests;
+			sourceTree = "<group>";
+		};
+		6536081821B3A63B00FE59F6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				653607D021B39BBC00FE59F6 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		6536081921B3A66C00FE59F6 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				653607DC21B39BBD00FE59F6 /* Info.plist */,
+				653607DD21B39BBD00FE59F6 /* Fornax.entitlements */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		6536081A21B3A68D00FE59F6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6536081B21B3A6A200FE59F6 /* Fits.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +255,24 @@
 			productReference = 653607ED21B39BBD00FE59F6 /* FornaxUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		6536080821B3A25200FE59F6 /* FornaxFunctionalTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6536081021B3A25200FE59F6 /* Build configuration list for PBXNativeTarget "FornaxFunctionalTests" */;
+			buildPhases = (
+				6536080521B3A25200FE59F6 /* Sources */,
+				6536080621B3A25200FE59F6 /* Frameworks */,
+				6536080721B3A25200FE59F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6536080F21B3A25200FE59F6 /* PBXTargetDependency */,
+			);
+			name = FornaxFunctionalTests;
+			productName = FornaxFunctionalTests;
+			productReference = 6536080921B3A25200FE59F6 /* FornaxFunctionalTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -218,6 +294,10 @@
 						CreatedOnToolsVersion = 10.1;
 						TestTargetID = 653607CA21B39BBC00FE59F6;
 					};
+					6536080821B3A25200FE59F6 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 653607CA21B39BBC00FE59F6;
+					};
 				};
 			};
 			buildConfigurationList = 653607C621B39BBC00FE59F6 /* Build configuration list for PBXProject "Fornax" */;
@@ -236,6 +316,7 @@
 				653607CA21B39BBC00FE59F6 /* Fornax */,
 				653607E121B39BBD00FE59F6 /* FornaxTests */,
 				653607EC21B39BBD00FE59F6 /* FornaxUITests */,
+				6536080821B3A25200FE59F6 /* FornaxFunctionalTests */,
 			);
 		};
 /* End PBXProject section */
@@ -254,6 +335,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6536080321B39FFA00FE59F6 /* ExampleFitsFile.fits in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +343,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6536081621B3A3F500FE59F6 /* ExampleFitsFile.fits in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6536080721B3A25200FE59F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6536081521B3A3F500FE59F6 /* ExampleFitsFile.fits in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6536081C21B3A6A200FE59F6 /* Fits.swift in Sources */,
 				653607D621B39BBC00FE59F6 /* Document.xcdatamodeld in Sources */,
 				653607D121B39BBC00FE59F6 /* ViewController.swift in Sources */,
 				653607CF21B39BBC00FE59F6 /* AppDelegate.swift in Sources */,
@@ -282,7 +374,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6536080021B39BDF00FE59F6 /* FunctionalTests.swift in Sources */,
 				653607E721B39BBD00FE59F6 /* FornaxTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +383,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				653607F221B39BBD00FE59F6 /* FornaxUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6536080521B3A25200FE59F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6536081321B3A27C00FE59F6 /* FunctionalTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +406,11 @@
 			isa = PBXTargetDependency;
 			target = 653607CA21B39BBC00FE59F6 /* Fornax */;
 			targetProxy = 653607EE21B39BBD00FE59F6 /* PBXContainerItemProxy */;
+		};
+		6536080F21B3A25200FE59F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 653607CA21B39BBC00FE59F6 /* Fornax */;
+			targetProxy = 6536080E21B3A25200FE59F6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -444,7 +548,7 @@
 				CODE_SIGN_ENTITLEMENTS = Fornax/Fornax.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Fornax/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -462,7 +566,7 @@
 				CODE_SIGN_ENTITLEMENTS = Fornax/Fornax.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Fornax/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -551,6 +655,44 @@
 			};
 			name = Release;
 		};
+		6536081121B3A25200FE59F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = FornaxFunctionalTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.golmschenk.FornaxFunctionalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fornax.app/Contents/MacOS/Fornax";
+			};
+			name = Debug;
+		};
+		6536081221B3A25200FE59F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = FornaxFunctionalTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.golmschenk.FornaxFunctionalTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fornax.app/Contents/MacOS/Fornax";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -586,6 +728,15 @@
 			buildConfigurations = (
 				653607FD21B39BBD00FE59F6 /* Debug */,
 				653607FE21B39BBD00FE59F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6536081021B3A25200FE59F6 /* Build configuration list for PBXNativeTarget "FornaxFunctionalTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6536081121B3A25200FE59F6 /* Debug */,
+				6536081221B3A25200FE59F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
