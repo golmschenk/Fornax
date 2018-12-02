@@ -15,6 +15,7 @@
 		653607DB21B39BBD00FE59F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 653607D921B39BBD00FE59F6 /* Main.storyboard */; };
 		653607E721B39BBD00FE59F6 /* FornaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653607E621B39BBD00FE59F6 /* FornaxTests.swift */; };
 		653607F221B39BBD00FE59F6 /* FornaxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653607F121B39BBD00FE59F6 /* FornaxUITests.swift */; };
+		6536080021B39BDF00FE59F6 /* FunctionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653607FF21B39BDF00FE59F6 /* FunctionalTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		653607ED21B39BBD00FE59F6 /* FornaxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FornaxUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		653607F121B39BBD00FE59F6 /* FornaxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FornaxUITests.swift; sourceTree = "<group>"; };
 		653607F321B39BBD00FE59F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		653607FF21B39BDF00FE59F6 /* FunctionalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +117,10 @@
 		653607E521B39BBD00FE59F6 /* FornaxTests */ = {
 			isa = PBXGroup;
 			children = (
+				6536080121B39C2600FE59F6 /* TestResources */,
 				653607E621B39BBD00FE59F6 /* FornaxTests.swift */,
 				653607E821B39BBD00FE59F6 /* Info.plist */,
+				653607FF21B39BDF00FE59F6 /* FunctionalTests.swift */,
 			);
 			path = FornaxTests;
 			sourceTree = "<group>";
@@ -128,6 +132,13 @@
 				653607F321B39BBD00FE59F6 /* Info.plist */,
 			);
 			path = FornaxUITests;
+			sourceTree = "<group>";
+		};
+		6536080121B39C2600FE59F6 /* TestResources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TestResources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6536080021B39BDF00FE59F6 /* FunctionalTests.swift in Sources */,
 				653607E721B39BBD00FE59F6 /* FornaxTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
