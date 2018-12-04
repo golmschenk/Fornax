@@ -18,7 +18,6 @@ class Fits {
     init(fromUrl fileUrl: URL) {
         var bytes = [UInt8]()
         let data = try! Data(contentsOf: fileUrl)
-        var headerCount = 0
         for headerCardStartIndex in stride(from: 0, to: data.count, by: headerCardLength)
         {
             bytes = Array(data[headerCardStartIndex ..< headerCardStartIndex + headerCardLength])
@@ -28,7 +27,6 @@ class Fits {
             }
             else {
                 headerCards.append(string)
-                headerCount += 1
             }
         }
     }
