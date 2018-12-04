@@ -9,17 +9,19 @@
 import Foundation
 
 class Fits {
-    
+
+    let headerCardLength = 80
+    let recordLength = 2880
+
     var headerCards = [String]()
     
-    init(fromPath filePath: String) {
+    init(fromUrl fileUrl: URL) {
         var bytes = [UInt8]()
-        let data = NSData(contentsOfFile: filePath)!
-        var buffer = [UInt8](repeating: 0, count: data.length)
-        data.getBytes(&buffer, length: data.length)
+        let data = try! Data(contentsOf: fileUrl)
         var headerCount = 0
-        while true {
-            bytes = Array(buffer[headerCount * 80 ..< (headerCount + 1) * 80])
+        for headerCardStartIndex in stride(from: 0, to: data.count, by: headerCardLength)
+        {
+            bytes = Array(data[headerCardStartIndex ..< headerCardStartIndex + headerCardLength])
             let string = String(bytes: bytes, encoding: .ascii)!
             if string.prefix(3) == "END" {
                 break

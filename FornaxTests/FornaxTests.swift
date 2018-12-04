@@ -11,13 +11,13 @@ import XCTest
 
 class FornaxTests: XCTestCase {
 
-    var path: String!
+    var url: URL!
     var fits: Fits!
     
     override func setUp() {
         let bundle = Bundle(for: type(of: self))
-        path = bundle.path(forResource: "ExampleFitsFile", ofType: "fits")!
-        fits = Fits(fromPath: path)
+        url = bundle.url(forResource: "ExampleFitsFile", withExtension: "fits")!
+        fits = Fits(fromUrl: url)
     }
 
     override func tearDown() {
@@ -25,7 +25,7 @@ class FornaxTests: XCTestCase {
     }
 
     func testForFits() {
-        let _ = Fits(fromPath: path)
+        let _ = Fits(fromUrl: url)
     }
     
     func testForHeader() {
