@@ -39,5 +39,9 @@ class FornaxTests: XCTestCase {
     func testHeaderContainsFirstCard() {
         XCTAssertEqual(fits.header[0], "SIMPLE  =                    T / file does conform to FITS standard             ")
     }
+    
+    func testHeaderContainsCorrectNumberOfHeaderCards() {
+        XCTAssertEqual(fits.header.count, 262)
+    }
 
 }

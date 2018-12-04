@@ -17,8 +17,17 @@ class Fits {
         let data = NSData(contentsOfFile: filePath)!
         var buffer = [UInt8](repeating: 0, count: data.length)
         data.getBytes(&buffer, length: data.length)
-        bytes = Array(buffer.prefix(upTo: 80))
-        let string = String(bytes: bytes, encoding: .ascii)!
-        header.append(string)
+        var headerCount = 0
+        while true {
+            bytes = Array(buffer[headerCount * 80 ..< (headerCount + 1) * 80])
+            let string = String(bytes: bytes, encoding: .ascii)!
+            if string.prefix(3) == "END" {
+                break
+            }
+            else {
+                header.append(string)
+                headerCount += 1
+            }
+        }
     }
 }
