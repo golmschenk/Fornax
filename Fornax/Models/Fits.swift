@@ -10,7 +10,7 @@ import Foundation
 
 class Fits {
     
-    var header = [String]()
+    var headerCards = [String]()
     
     init(fromPath filePath: String) {
         var bytes = [UInt8]()
@@ -25,7 +25,7 @@ class Fits {
                 break
             }
             else {
-                header.append(string)
+                headerCards.append(string)
                 headerCount += 1
             }
         }

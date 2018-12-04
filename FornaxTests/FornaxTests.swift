@@ -29,23 +29,23 @@ class FornaxTests: XCTestCase {
     }
     
     func testForHeader() {
-        XCTAssertNotNil(fits.header)
+        XCTAssertNotNil(fits.headerCards)
     }
     
     func testHeaderForExampleFileLength() {
-        XCTAssertNotEqual(fits.header.count, 0)
+        XCTAssertNotEqual(fits.headerCards.count, 0)
     }
     
     func testHeaderContainsFirstCard() {
-        XCTAssertEqual(fits.header.first, "SIMPLE  =                    T / file does conform to FITS standard             ")
+        XCTAssertEqual(fits.headerCards.first, "SIMPLE  =                    T / file does conform to FITS standard             ")
     }
     
     func testHeaderContainsCorrectNumberOfHeaderCards() {
-        XCTAssertEqual(fits.header.count, 262)
+        XCTAssertEqual(fits.headerCards.count, 262)
     }
     
     func testHeaderContainsLastCard() {
-        XCTAssertEqual(fits.header.last, "CD3_2   =                    0 /                                                ")
+        XCTAssertEqual(fits.headerCards.last, "CD3_2   =                    0 /                                                ")
     }
 
 }
