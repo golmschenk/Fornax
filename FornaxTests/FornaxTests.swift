@@ -12,10 +12,12 @@ import XCTest
 class FornaxTests: XCTestCase {
 
     var path: String!
+    var fits: Fits!
     
     override func setUp() {
         let bundle = Bundle(for: type(of: self))
         path = bundle.path(forResource: "ExampleFitsFile", ofType: "fits")!
+        fits = Fits(fromPath: path)
     }
 
     override func tearDown() {
@@ -26,9 +28,16 @@ class FornaxTests: XCTestCase {
         let _ = Fits(fromPath: path)
     }
     
-    func testHeaderContainsDataWhenLoadingFile() {
-        let fits = Fits(fromPath: path)
+    func testForHeader() {
         XCTAssertNotNil(fits.header)
+    }
+    
+    func testHeaderForExampleFileLength() {
+        XCTAssertNotEqual(fits.header.count, 0)
+    }
+    
+    func testHeaderContainsFirstCard() {
+        XCTAssertEqual(fits.header[0], "SIMPLE  =                    T / file does conform to FITS standard             ")
     }
 
 }
