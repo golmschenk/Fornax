@@ -37,11 +37,15 @@ class FornaxTests: XCTestCase {
     }
     
     func testHeaderContainsFirstCard() {
-        XCTAssertEqual(fits.header[0], "SIMPLE  =                    T / file does conform to FITS standard             ")
+        XCTAssertEqual(fits.header.first, "SIMPLE  =                    T / file does conform to FITS standard             ")
     }
     
     func testHeaderContainsCorrectNumberOfHeaderCards() {
         XCTAssertEqual(fits.header.count, 262)
+    }
+    
+    func testHeaderContainsLastCard() {
+        XCTAssertEqual(fits.header.last, "CD3_2   =                    0 /                                                ")
     }
 
 }
