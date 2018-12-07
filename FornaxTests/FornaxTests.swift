@@ -47,5 +47,9 @@ class FornaxTests: XCTestCase {
     func testHeaderContainsLastCard() {
         XCTAssertEqual(fits.headerCards.last, "CD3_2   =                    0 /                                                ")
     }
+    
+    func testForPrimaryHeaderRecordCount() {
+        XCTAssertEqual(fits.headerRecordCount, 8)
+    }
 
 }
