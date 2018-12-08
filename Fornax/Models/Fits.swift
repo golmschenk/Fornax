@@ -33,4 +33,13 @@ class Fits {
             }
         }
     }
+    
+    func getHeaderCardValue(fromString headerCardString: String) -> Bool {
+        let boolean_index = headerCardString.index(headerCardString.startIndex, offsetBy: 29)
+        if headerCardString[boolean_index] == "T" {
+            return true
+        } else {
+            return false
+        }
+    }
 }

@@ -51,5 +51,17 @@ class FornaxTests: XCTestCase {
     func testForPrimaryHeaderRecordCount() {
         XCTAssertEqual(fits.headerRecordCount, 8)
     }
+    
+    func testCanGetBooleanValueFromHeaderCardStringForTrueCase() {
+        let headerCardString = "SIMPLE  =                    T / file does conform to FITS standard             "
+        let value = fits!.getHeaderCardValue(fromString: headerCardString)
+        XCTAssertEqual(value, true)
+    }
+    
+    func testCanGetBooleanValueFromHeaderCardStringForFalseCase() {
+        let headerCardString = "SIMPLE  =                    F / file does not conform to FITS standard         "
+        let value = fits!.getHeaderCardValue(fromString: headerCardString)
+        XCTAssertEqual(value, false)
+    }
 
 }
