@@ -43,3 +43,9 @@ class Fits {
         }
     }
 }
+
+extension Fits {
+    enum HeaderType {
+        
+    }
+}

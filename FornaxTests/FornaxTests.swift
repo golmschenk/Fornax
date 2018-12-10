@@ -63,5 +63,9 @@ class FornaxTests: XCTestCase {
         let value = fits!.getHeaderCardValue(fromString: headerCardString)
         XCTAssertEqual(value, false)
     }
+    
+    func testForFitsTypesEnum() {
+        let _: Fits.HeaderType
+    }
 
 }
