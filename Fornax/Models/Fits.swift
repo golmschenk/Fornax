@@ -42,8 +42,10 @@ class Fits {
         //let comment = String(valueSplit.last!)
         if valueSubstring == "T" {
             return HeaderValue.bool(true)
-        } else {
+        } else if valueSubstring == "F" {
             return HeaderValue.bool(false)
+        } else {
+            return HeaderValue.int(Int(valueSubstring)!)
         }
     }
 }
