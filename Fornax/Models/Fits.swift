@@ -34,18 +34,23 @@ class Fits {
         }
     }
     
-    func getHeaderCardValue(fromString headerCardString: String) -> Bool {
-        let boolean_index = headerCardString.index(headerCardString.startIndex, offsetBy: 29)
-        if headerCardString[boolean_index] == "T" {
-            return true
+    func getHeaderCardValue(fromString headerCardString: String) -> HeaderValue {
+        let keywordSplit = headerCardString.split(separator: "=", maxSplits: 1)
+        //let keyword = String(keywordSplit.first!)
+        let valueSplit = keywordSplit.last!.split(separator: "/", maxSplits: 1)
+        let valueSubstring = valueSplit.first!.trimmingCharacters(in: .whitespaces)
+        //let comment = String(valueSplit.last!)
+        if valueSubstring == "T" {
+            return HeaderValue.bool(true)
         } else {
-            return false
+            return HeaderValue.bool(false)
         }
     }
 }
 
 extension Fits {
-    enum HeaderType {
-        
+    enum HeaderValue {
+        case bool(Bool)
+        case int(Int)
     }
 }
