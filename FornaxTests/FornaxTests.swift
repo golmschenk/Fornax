@@ -70,7 +70,7 @@ class FornaxTests: XCTestCase {
         }
     }
     
-    func testForFitsTypesEnum() {
+    func testForHeaderValue() {
         let _: Fits.HeaderValue
     }
     

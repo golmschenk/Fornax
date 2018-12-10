@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Fits {
+struct Fits {
 
     static let headerCardLength = 80
     static let recordLength = 2880
