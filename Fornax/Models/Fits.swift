@@ -37,7 +37,17 @@ struct Fits {
 
 extension Fits {
     struct Header {
-        func getValue(fromValueString valueString: String) -> HeaderValue {
+        let keyword: String?
+        let value: HeaderValue?
+        let comment: String?
+        
+        init(fromCardString cardString: String) {
+            let valueString: String?
+            (keyword, valueString, comment) = Fits.Header.getComponents(fromCardString: cardString)
+            value = Fits.Header.getValue(fromValueString: valueString!)
+        }
+        
+        static func getValue(fromValueString valueString: String) -> HeaderValue {
             if valueString == "T" {
                 return HeaderValue.bool(true)
             } else if valueString == "F" {
@@ -47,7 +57,7 @@ extension Fits {
             }
         }
 
-        func getComponents(fromCardString: String) -> (String, String, String) {
+        static func getComponents(fromCardString: String) -> (String?, String?, String?) {
             let keywordSplit = fromCardString.split(separator: "=", maxSplits: 1)
             let keyword = keywordSplit.first!.trimmingCharacters(in: .whitespaces)
             let valueSplit = keywordSplit.last!.split(separator: "/", maxSplits: 1)
