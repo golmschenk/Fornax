@@ -37,12 +37,8 @@ struct Fits {
 
 extension Fits {
     struct Header {
-        func getHeaderCardValue(fromString headerCardString: String) -> HeaderValue {
-            let keywordSplit = headerCardString.split(separator: "=", maxSplits: 1)
-            //let keyword = String(keywordSplit.first!)
-            let valueSplit = keywordSplit.last!.split(separator: "/", maxSplits: 1)
-            let valueSubstring = valueSplit.first!.trimmingCharacters(in: .whitespaces)
-            //let comment = String(valueSplit.last!)
+        func getHeaderCardValue(fromString headerCardString: String) -> (HeaderValue) {
+            let (_, valueSubstring, _) = getComponents(fromCardString: headerCardString)
             if valueSubstring == "T" {
                 return HeaderValue.bool(true)
             } else if valueSubstring == "F" {
@@ -50,6 +46,15 @@ extension Fits {
             } else {
                 return HeaderValue.int(Int(valueSubstring)!)
             }
+        }
+
+        func getComponents(fromCardString: String) -> (String, String, String) {
+            let keywordSplit = fromCardString.split(separator: "=", maxSplits: 1)
+            let keyword = keywordSplit.first!.trimmingCharacters(in: .whitespaces)
+            let valueSplit = keywordSplit.last!.split(separator: "/", maxSplits: 1)
+            let valueSubstring = valueSplit.first!.trimmingCharacters(in: .whitespaces)
+            let comment = valueSplit.last!.trimmingCharacters(in: .whitespaces)
+            return (keyword, valueSubstring, comment)
         }
     }
     

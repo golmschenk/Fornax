@@ -18,6 +18,15 @@ class HeaderTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    func testSplittingOfHeaderCardReturnsKeyword() {
+        let headerCardString1 = "SIMPLE  =                    T / file does conform to FITS standard             "
+        let (keyword1, _, _) = Fits.Header().getComponents(fromCardString: headerCardString1)
+        XCTAssertEqual(keyword1, "SIMPLE")
+        let headerCardString2 = "NAXIS   =                    3 / number of data axes                            "
+        let (keyword2, _, _) = Fits.Header().getComponents(fromCardString: headerCardString2)
+        XCTAssertEqual(keyword2, "NAXIS")
+    }
 
     func testCanGetBooleanValueFromHeaderCardStringForTrueCase() {
         let headerCardString = "SIMPLE  =                    T / file does conform to FITS standard             "
