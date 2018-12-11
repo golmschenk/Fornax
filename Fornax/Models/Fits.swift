@@ -48,6 +48,9 @@ extension Fits {
         }
         
         static func getValue(fromValueString valueString: String) -> HeaderValue {
+            if valueString.first == "'" && valueString.last == "'" {
+                return HeaderValue.string(String(valueString.dropFirst().dropLast()))
+            }
             if valueString == "T" {
                 return HeaderValue.bool(true)
             } else if valueString == "F" {
@@ -70,5 +73,6 @@ extension Fits {
     enum HeaderValue {
         case bool(Bool)
         case int(Int)
+        case string(String)
     }
 }

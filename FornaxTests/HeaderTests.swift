@@ -80,6 +80,21 @@ class HeaderTests: XCTestCase {
         }
     }
     
+    func testCanGetStringValueFromHeaderCardString() {
+        let valueString1 = "'STScI-STSDAS'"
+        let value1 = Fits.Header.getValue(fromValueString: valueString1)
+        switch value1 {
+        case .string(let value1): XCTAssertEqual(value1, "STScI-STSDAS")
+        default: XCTFail()
+        }
+        let valueString2 = "'u5780205r_cvt.c0h'"
+        let value2 = Fits.Header.getValue(fromValueString: valueString2)
+        switch value2 {
+        case .string(let value2): XCTAssertEqual(value2, "u5780205r_cvt.c0h")
+        default: XCTFail()
+        }
+    }
+    
     func testInitilizingFromCardSetsKeyword() {
         let cardString = "SIMPLE  =                    T / file does conform to FITS standard             "
         let header = Fits.Header(fromCardString: cardString)
