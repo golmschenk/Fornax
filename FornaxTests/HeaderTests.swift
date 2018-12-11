@@ -65,7 +65,7 @@ class HeaderTests: XCTestCase {
         }
     }
     
-    func testCanGetIntValueFromHeaderCardString() {
+    func testCanGetIntValueFromFromValueString() {
         let valueString1 = "-32"
         let value1 = Fits.Header.getValue(fromValueString: valueString1)
         switch value1 {
@@ -80,7 +80,7 @@ class HeaderTests: XCTestCase {
         }
     }
     
-    func testCanGetStringValueFromHeaderCardString() {
+    func testCanGetStringValueFromValueString() {
         let valueString1 = "'STScI-STSDAS'"
         let value1 = Fits.Header.getValue(fromValueString: valueString1)
         switch value1 {
@@ -88,6 +88,22 @@ class HeaderTests: XCTestCase {
         default: XCTFail()
         }
         let valueString2 = "'u5780205r_cvt.c0h'"
+        let value2 = Fits.Header.getValue(fromValueString: valueString2)
+        switch value2 {
+        case .string(let value2): XCTAssertEqual(value2, "u5780205r_cvt.c0h")
+        default: XCTFail()
+        }
+    }
+    
+    func testStringValueDropsTrailingWhitespace() {
+        // Trailing whitespace is suppose to be ignored according to the FITS userguide.
+        let valueString1 = "'STScI-STSDAS   '"
+        let value1 = Fits.Header.getValue(fromValueString: valueString1)
+        switch value1 {
+        case .string(let value1): XCTAssertEqual(value1, "STScI-STSDAS")
+        default: XCTFail()
+        }
+        let valueString2 = "'u5780205r_cvt.c0h   '"
         let value2 = Fits.Header.getValue(fromValueString: valueString2)
         switch value2 {
         case .string(let value2): XCTAssertEqual(value2, "u5780205r_cvt.c0h")

@@ -49,7 +49,9 @@ extension Fits {
         
         static func getValue(fromValueString valueString: String) -> HeaderValue {
             if valueString.first == "'" && valueString.last == "'" {
-                return HeaderValue.string(String(valueString.dropFirst().dropLast()))
+                let stringContent = valueString.dropFirst().dropLast()
+                let contentWithoutTrailingWhitespace = stringContent.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression)
+                return HeaderValue.string(String(contentWithoutTrailingWhitespace))
             }
             if valueString == "T" {
                 return HeaderValue.bool(true)
