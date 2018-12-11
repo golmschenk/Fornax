@@ -37,14 +37,13 @@ struct Fits {
 
 extension Fits {
     struct Header {
-        func getHeaderCardValue(fromString headerCardString: String) -> (HeaderValue) {
-            let (_, valueSubstring, _) = getComponents(fromCardString: headerCardString)
-            if valueSubstring == "T" {
+        func getValue(fromValueString valueString: String) -> HeaderValue {
+            if valueString == "T" {
                 return HeaderValue.bool(true)
-            } else if valueSubstring == "F" {
+            } else if valueString == "F" {
                 return HeaderValue.bool(false)
             } else {
-                return HeaderValue.int(Int(valueSubstring)!)
+                return HeaderValue.int(Int(valueString)!)
             }
         }
 

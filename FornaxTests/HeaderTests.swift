@@ -45,40 +45,37 @@ class HeaderTests: XCTestCase {
         let (_, _, comment2) = Fits.Header().getComponents(fromCardString: headerCardString2)
         XCTAssertEqual(comment2, "number of data axes")
     }
-
-    func testCanGetBooleanValueFromHeaderCardStringForTrueCase() {
-        let headerCardString = "SIMPLE  =                    T / file does conform to FITS standard             "
-        let value = Fits.Header().getHeaderCardValue(fromString: headerCardString)
-        switch value {
-        case .bool(let boolValue): XCTAssertEqual(boolValue, true)
-        default: XCTFail()
-        }
-    }
-    
-    func testCanGetBooleanValueFromHeaderCardStringForFalseCase() {
-        let headerCardString = "SIMPLE  =                    F / file does not conform to FITS standard         "
-        let value = Fits.Header().getHeaderCardValue(fromString: headerCardString)
-        switch value {
-        case .bool(let boolValue): XCTAssertEqual(boolValue, false)
-        default: XCTFail()
-        }
-    }
     
     func testForHeaderValue() {
         let _: Fits.HeaderValue
     }
     
-    func testCanGetIntValueFromHeaderCardString() {
-        let headerCardString1 = "BITPIX  =                  -32 / number of bits per data pixel                  "
-        let value1 = Fits.Header().getHeaderCardValue(fromString: headerCardString1)
+    func testCanGetBooleanValueFromValueString() {
+        let valueString1 = "T"
+        let value1 = Fits.Header().getValue(fromValueString: valueString1)
         switch value1 {
-        case .int(let intValue): XCTAssertEqual(intValue, -32)
+        case .bool(let boolValue1): XCTAssertEqual(boolValue1, true)
         default: XCTFail()
         }
-        let headerCardString2 = "NAXIS   =                    3 / number of data axes                            "
-        let value2 = Fits.Header().getHeaderCardValue(fromString: headerCardString2)
+        let valueString2 = "F"
+        let value2 = Fits.Header().getValue(fromValueString: valueString2)
         switch value2 {
-        case .int(let intValue): XCTAssertEqual(intValue, 3)
+        case .bool(let boolValue2): XCTAssertEqual(boolValue2, false)
+        default: XCTFail()
+        }
+    }
+    
+    func testCanGetIntValueFromHeaderCardString() {
+        let valueString1 = "-32"
+        let value1 = Fits.Header().getValue(fromValueString: valueString1)
+        switch value1 {
+        case .int(let intValue1): XCTAssertEqual(intValue1, -32)
+        default: XCTFail()
+        }
+        let valueString2 = "3"
+        let value2 = Fits.Header().getValue(fromValueString: valueString2)
+        switch value2 {
+        case .int(let intValue2): XCTAssertEqual(intValue2, 3)
         default: XCTFail()
         }
     }
