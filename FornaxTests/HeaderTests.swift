@@ -27,6 +27,24 @@ class HeaderTests: XCTestCase {
         let (keyword2, _, _) = Fits.Header().getComponents(fromCardString: headerCardString2)
         XCTAssertEqual(keyword2, "NAXIS")
     }
+    
+    func testSplittingOfHeaderCardReturnsValueString() {
+        let headerCardString1 = "SIMPLE  =                    T / file does conform to FITS standard             "
+        let (_, valueString1, _) = Fits.Header().getComponents(fromCardString: headerCardString1)
+        XCTAssertEqual(valueString1, "T")
+        let headerCardString2 = "NAXIS   =                    3 / number of data axes                            "
+        let (_, valueString2, _) = Fits.Header().getComponents(fromCardString: headerCardString2)
+        XCTAssertEqual(valueString2, "3")
+    }
+    
+    func testSplittingOfHeaderCardReturnsComment() {
+        let headerCardString1 = "SIMPLE  =                    T / file does conform to FITS standard             "
+        let (_, _, comment1) = Fits.Header().getComponents(fromCardString: headerCardString1)
+        XCTAssertEqual(comment1, "file does conform to FITS standard")
+        let headerCardString2 = "NAXIS   =                    3 / number of data axes                            "
+        let (_, _, comment2) = Fits.Header().getComponents(fromCardString: headerCardString2)
+        XCTAssertEqual(comment2, "number of data axes")
+    }
 
     func testCanGetBooleanValueFromHeaderCardStringForTrueCase() {
         let headerCardString = "SIMPLE  =                    T / file does conform to FITS standard             "
