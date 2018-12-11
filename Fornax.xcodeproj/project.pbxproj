@@ -20,6 +20,7 @@
 		6536081521B3A3F500FE59F6 /* ExampleFitsFile.fits in Resources */ = {isa = PBXBuildFile; fileRef = 6536080221B39FFA00FE59F6 /* ExampleFitsFile.fits */; };
 		6536081621B3A3F500FE59F6 /* ExampleFitsFile.fits in Resources */ = {isa = PBXBuildFile; fileRef = 6536080221B39FFA00FE59F6 /* ExampleFitsFile.fits */; };
 		6536081C21B3A6A200FE59F6 /* Fits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6536081B21B3A6A200FE59F6 /* Fits.swift */; };
+		6584BA8A21BF76B100CDE5E3 /* HeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6584BA8921BF76B100CDE5E3 /* HeaderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		6536080921B3A25200FE59F6 /* FornaxFunctionalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FornaxFunctionalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6536080D21B3A25200FE59F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6536081B21B3A6A200FE59F6 /* Fits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fits.swift; sourceTree = "<group>"; };
+		6584BA8921BF76B100CDE5E3 /* HeaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 			children = (
 				653607E621B39BBD00FE59F6 /* FornaxTests.swift */,
 				653607E821B39BBD00FE59F6 /* Info.plist */,
+				6584BA8921BF76B100CDE5E3 /* HeaderTests.swift */,
 			);
 			path = FornaxTests;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6584BA8A21BF76B100CDE5E3 /* HeaderTests.swift in Sources */,
 				653607E721B39BBD00FE59F6 /* FornaxTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

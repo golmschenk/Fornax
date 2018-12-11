@@ -28,64 +28,27 @@ class FornaxTests: XCTestCase {
         let _ = Fits(fromUrl: url)
     }
     
-    func testForHeader() {
+    func testForHeaderCards() {
         XCTAssertNotNil(fits.headerCards)
     }
     
-    func testHeaderForExampleFileLength() {
+    func testHeaderCardsForExampleFileLength() {
         XCTAssertNotEqual(fits.headerCards.count, 0)
     }
     
-    func testHeaderContainsFirstCard() {
+    func testHeaderCardsContainsFirstCard() {
         XCTAssertEqual(fits.headerCards.first, "SIMPLE  =                    T / file does conform to FITS standard             ")
     }
     
-    func testHeaderContainsCorrectNumberOfHeaderCards() {
+    func testHeaderCardsContainsCorrectNumberOfHeaderCards() {
         XCTAssertEqual(fits.headerCards.count, 262)
     }
     
-    func testHeaderContainsLastCard() {
+    func testHeaderCardsContainsLastCard() {
         XCTAssertEqual(fits.headerCards.last, "CD3_2   =                    0 /                                                ")
     }
     
     func testForPrimaryHeaderRecordCount() {
         XCTAssertEqual(fits.headerRecordCount, 8)
-    }
-    
-    func testCanGetBooleanValueFromHeaderCardStringForTrueCase() {
-        let headerCardString = "SIMPLE  =                    T / file does conform to FITS standard             "
-        let value = Fits.Header().getHeaderCardValue(fromString: headerCardString)
-        switch value {
-            case .bool(let boolValue): XCTAssertEqual(boolValue, true)
-            default: XCTFail()
-        }
-    }
-    
-    func testCanGetBooleanValueFromHeaderCardStringForFalseCase() {
-        let headerCardString = "SIMPLE  =                    F / file does not conform to FITS standard         "
-        let value = Fits.Header().getHeaderCardValue(fromString: headerCardString)
-        switch value {
-            case .bool(let boolValue): XCTAssertEqual(boolValue, false)
-            default: XCTFail()
-        }
-    }
-    
-    func testForHeaderValue() {
-        let _: Fits.HeaderValue
-    }
-    
-    func testCanGetIntValueFromHeaderCardString() {
-        let headerCardString1 = "BITPIX  =                  -32 / number of bits per data pixel                  "
-        let value1 = Fits.Header().getHeaderCardValue(fromString: headerCardString1)
-        switch value1 {
-            case .int(let intValue): XCTAssertEqual(intValue, -32)
-            default: XCTFail()
-        }
-        let headerCardString2 = "NAXIS   =                    3 / number of data axes                            "
-        let value2 = Fits.Header().getHeaderCardValue(fromString: headerCardString2)
-        switch value2 {
-            case .int(let intValue): XCTAssertEqual(intValue, 3)
-            default: XCTFail()
-        }
     }
 }
