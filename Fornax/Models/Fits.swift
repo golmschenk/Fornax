@@ -33,24 +33,26 @@ struct Fits {
             }
         }
     }
-    
-    func getHeaderCardValue(fromString headerCardString: String) -> HeaderValue {
-        let keywordSplit = headerCardString.split(separator: "=", maxSplits: 1)
-        //let keyword = String(keywordSplit.first!)
-        let valueSplit = keywordSplit.last!.split(separator: "/", maxSplits: 1)
-        let valueSubstring = valueSplit.first!.trimmingCharacters(in: .whitespaces)
-        //let comment = String(valueSplit.last!)
-        if valueSubstring == "T" {
-            return HeaderValue.bool(true)
-        } else if valueSubstring == "F" {
-            return HeaderValue.bool(false)
-        } else {
-            return HeaderValue.int(Int(valueSubstring)!)
-        }
-    }
 }
 
 extension Fits {
+    struct Header {
+        func getHeaderCardValue(fromString headerCardString: String) -> HeaderValue {
+            let keywordSplit = headerCardString.split(separator: "=", maxSplits: 1)
+            //let keyword = String(keywordSplit.first!)
+            let valueSplit = keywordSplit.last!.split(separator: "/", maxSplits: 1)
+            let valueSubstring = valueSplit.first!.trimmingCharacters(in: .whitespaces)
+            //let comment = String(valueSplit.last!)
+            if valueSubstring == "T" {
+                return HeaderValue.bool(true)
+            } else if valueSubstring == "F" {
+                return HeaderValue.bool(false)
+            } else {
+                return HeaderValue.int(Int(valueSubstring)!)
+            }
+        }
+    }
+    
     enum HeaderValue {
         case bool(Bool)
         case int(Int)
