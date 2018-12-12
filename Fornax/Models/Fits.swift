@@ -57,10 +57,10 @@ extension Fits {
             } else if valueString == "F" {
                 return HeaderValue.bool(false)
             } else {  // Is a number.
-                let decimalPointCount = valueString.components(separatedBy:".").count - 1
-                if decimalPointCount == 2 {  // Complex number.
-                    return HeaderValue.bool(true)
-                } else if decimalPointCount == 1 {  // Float.
+                let splitValueString = valueString.split(separator: " ", omittingEmptySubsequences: true)
+                if splitValueString.count == 2 {  // Complex number.
+                    return HeaderValue.complex(Fits.HeaderValue.Complex(real: Float64(splitValueString.first!), imaginary: Float64(splitValueString.last!)))
+                } else if valueString.contains(".") {  // Float.
                     return HeaderValue.float(Float64(valueString)!)
                 } else {  // Integer
                     return HeaderValue.int(Int(valueString)!)
@@ -83,5 +83,11 @@ extension Fits {
         case int(Int)
         case string(String)
         case float(Float64)
+        case complex(Complex)
+        
+        struct Complex {
+            let real: Float64!
+            let imaginary: Float64!
+        }
     }
 }

@@ -147,4 +147,38 @@ class HeaderTests: XCTestCase {
         }
     }
     
+    func testCanGetFloatValueWithExponentialFromFromValueString() {
+        let valueString1 = "-1.086675160382E+01"
+        let value1 = Fits.Header.getValue(fromValueString: valueString1)
+        switch value1 {
+        case .float(let value1): XCTAssertEqual(value1, -1.086675160382e+1)
+        default: XCTFail()
+        }
+        let valueString2 = "-1.08E-21"
+        let value2 = Fits.Header.getValue(fromValueString: valueString2)
+        switch value2 {
+        case .float(let value2): XCTAssertEqual(value2, -1.08e-21)
+        default: XCTFail()
+        }
+    }
+    
+    func testCanGetComplexFromFromValueString() {
+        let valueString1 = "-1.086675160382E+01 354"
+        let value1 = Fits.Header.getValue(fromValueString: valueString1)
+        switch value1 {
+        case .complex(let value1):
+            XCTAssertEqual(value1.real, -1.086675160382e+1)
+            XCTAssertEqual(value1.imaginary, 354)
+        default: XCTFail()
+        }
+        let valueString2 = "111     -1.08E-21"
+        let value2 = Fits.Header.getValue(fromValueString: valueString2)
+        switch value2 {
+        case .complex(let value2):
+            XCTAssertEqual(value2.real, 111)
+            XCTAssertEqual(value2.imaginary, -1.08e-21)
+        default: XCTFail()
+        }
+    }
+    
 }
