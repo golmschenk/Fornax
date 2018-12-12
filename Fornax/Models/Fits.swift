@@ -52,13 +52,19 @@ extension Fits {
                 let stringContent = valueString.dropFirst().dropLast()
                 let contentWithoutTrailingWhitespace = stringContent.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression)
                 return HeaderValue.string(String(contentWithoutTrailingWhitespace))
-            }
-            if valueString == "T" {
+            } else if valueString == "T" {
                 return HeaderValue.bool(true)
             } else if valueString == "F" {
                 return HeaderValue.bool(false)
-            } else {
-                return HeaderValue.int(Int(valueString)!)
+            } else {  // Is a number.
+                let decimalPointCount = valueString.components(separatedBy:".").count - 1
+                if decimalPointCount == 2 {  // Complex number.
+                    return HeaderValue.bool(true)
+                } else if decimalPointCount == 1 {  // Float.
+                    return HeaderValue.float(Float64(valueString)!)
+                } else {  // Integer
+                    return HeaderValue.int(Int(valueString)!)
+                }
             }
         }
 
@@ -76,5 +82,6 @@ extension Fits {
         case bool(Bool)
         case int(Int)
         case string(String)
+        case float(Float64)
     }
 }

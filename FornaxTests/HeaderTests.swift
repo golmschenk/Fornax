@@ -131,4 +131,20 @@ class HeaderTests: XCTestCase {
         let header = Fits.Header(fromCardString: cardString)
         XCTAssertEqual(header.comment, "file does conform to FITS standard")
     }
+    
+    func testCanGetFloatValueFromFromValueString() {
+        let valueString1 = "3.33719"
+        let value1 = Fits.Header.getValue(fromValueString: valueString1)
+        switch value1 {
+        case .float(let value1): XCTAssertEqual(value1, 3.33719)
+        default: XCTFail()
+        }
+        let valueString2 = ".3543"
+        let value2 = Fits.Header.getValue(fromValueString: valueString2)
+        switch value2 {
+        case .float(let value2): XCTAssertEqual(value2, 0.3543)
+        default: XCTFail()
+        }
+    }
+    
 }
