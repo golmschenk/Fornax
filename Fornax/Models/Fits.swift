@@ -80,7 +80,10 @@ extension Fits {
         }
         
         static func getCommentaryComponents(fromCardString cardString: String) -> (String, String) {
-            return ("COMMENT", "")
+            let keywordSplit = cardString.split(separator: " ", maxSplits: 1, omittingEmptySubsequences: false)
+            let keyword = keywordSplit.first!.trimmingCharacters(in: .whitespaces)
+            let commentary = keywordSplit.last!.trimmingCharacters(in: .whitespaces)
+            return (keyword, commentary)
         }
         
         static func isCommentary(fromCardString cardString: String) -> Bool {

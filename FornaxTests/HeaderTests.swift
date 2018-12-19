@@ -211,4 +211,42 @@ class HeaderTests: XCTestCase {
         XCTAssertEqual(keyword2, "COMMENT")
     }
     
+    func testSplittingOfCommentCommentaryHeaderCardReturnsCommentary() {
+        let headerCardString1 = "COMMENT   FITS (Flexible Image Transport System) format is defined in 'Astronomy"
+        let (_, commentary1) = Fits.HeaderCard.getCommentaryComponents(fromCardString: headerCardString1)
+        XCTAssertEqual(commentary1, "FITS (Flexible Image Transport System) format is defined in 'Astronomy")
+        let headerCardString2 = "COMMENT   and Astrophysics', volume 376, page 359; bibcode: 2001A&A...376..359H "
+        let (_, commentary2) = Fits.HeaderCard.getCommentaryComponents(fromCardString: headerCardString2)
+        XCTAssertEqual(commentary2, "and Astrophysics', volume 376, page 359; bibcode: 2001A&A...376..359H")
+    }
+    
+    func testSplittingOfHistoryCommentaryHeaderCardReturnsKeyword() {
+        let headerCardString1 = "HISTORY   DESCRIP=STATIC MASK - INCLUDES CHARGE TRANSFER TRAPS                  "
+        let (keyword1, _) = Fits.HeaderCard.getCommentaryComponents(fromCardString: headerCardString1)
+        XCTAssertEqual(keyword1, "HISTORY")
+        let headerCardString2 = "HISTORY   crotacomp$hst_ota_007_syn.fits, crwfpc2comp$wfpc2_optics_006_syn.fits,"
+        let (keyword2, _) = Fits.HeaderCard.getCommentaryComponents(fromCardString: headerCardString2)
+        XCTAssertEqual(keyword2, "HISTORY")
+    }
+    
+    func testSplittingOfHistoryCommentaryHeaderCardReturnsCommentary() {
+        let headerCardString1 = "HISTORY   DESCRIP=STATIC MASK - INCLUDES CHARGE TRANSFER TRAPS                  "
+        let (_, commentary1) = Fits.HeaderCard.getCommentaryComponents(fromCardString: headerCardString1)
+        XCTAssertEqual(commentary1, "DESCRIP=STATIC MASK - INCLUDES CHARGE TRANSFER TRAPS")
+        let headerCardString2 = "HISTORY   crotacomp$hst_ota_007_syn.fits, crwfpc2comp$wfpc2_optics_006_syn.fits,"
+        let (_, commentary2) = Fits.HeaderCard.getCommentaryComponents(fromCardString: headerCardString2)
+        XCTAssertEqual(commentary2, "crotacomp$hst_ota_007_syn.fits, crwfpc2comp$wfpc2_optics_006_syn.fits,")
+    }
+    
+    func testSplittingOfBlankCommentaryHeaderCardReturnsKeyword() {
+        let headerCardString1 = "                                                                                "
+        let (keyword1, _) = Fits.HeaderCard.getCommentaryComponents(fromCardString: headerCardString1)
+        XCTAssertEqual(keyword1, "")
+    }
+    
+    func testSplittingOfBlankCommentaryHeaderCardReturnsCommentary() {
+        let headerCardString1 = "                                                                                "
+        let (_, commentary1) = Fits.HeaderCard.getCommentaryComponents(fromCardString: headerCardString1)
+        XCTAssertEqual(commentary1, "")
+    }
 }
