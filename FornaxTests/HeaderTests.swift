@@ -121,7 +121,7 @@ class HeaderTests: XCTestCase {
         let cardString = "SIMPLE  =                    T / file does conform to FITS standard             "
         let header = Fits.HeaderCard(fromCardString: cardString)
         switch header.value {
-        case .bool(let boolValue)?: XCTAssertEqual(boolValue, true)
+        case .bool(let boolValue): XCTAssertEqual(boolValue, true)
         default: XCTFail()
         }
     }
@@ -248,5 +248,16 @@ class HeaderTests: XCTestCase {
         let headerCardString1 = "                                                                                "
         let (_, commentary1) = Fits.HeaderCard.getCommentaryComponents(fromCardString: headerCardString1)
         XCTAssertEqual(commentary1, "")
+    }
+    
+    func testInitilizingFromCommentaryCardSetsHeaderCardMembers() {
+        let cardString = "HISTORY   DESCRIP=STATIC MASK - INCLUDES CHARGE TRANSFER TRAPS                  "
+        let header = Fits.HeaderCard(fromCardString: cardString)
+        XCTAssertEqual(header.keyword, "HISTORY")
+        switch header.value {
+        case .string(let stringValue): XCTAssertEqual(stringValue, "DESCRIP=STATIC MASK - INCLUDES CHARGE TRANSFER TRAPS")
+        default: XCTFail()
+        }
+        XCTAssertEqual(header.comment, "")
     }
 }

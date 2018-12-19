@@ -37,15 +37,21 @@ struct Fits {
 
 extension Fits {
     struct HeaderCard {
-        let keyword: String?
-        let value: HeaderValue?
-        let comment: String?
+        let keyword: String
+        let value: HeaderValue
+        let comment: String
         let rawString: String
         
         init(fromCardString cardString: String) {
-            let valueString: String?
-            (keyword, valueString, comment) = Fits.HeaderCard.getComponents(fromCardString: cardString)
-            value = Fits.HeaderCard.getValue(fromValueString: valueString!)
+            let valueString: String
+            if Fits.HeaderCard.isCommentary(fromCardString: cardString) {
+                (keyword, valueString) = Fits.HeaderCard.getCommentaryComponents(fromCardString: cardString)
+                value = HeaderValue.string(String(valueString))
+                comment = ""
+            } else {
+                (keyword, valueString, comment) = Fits.HeaderCard.getComponents(fromCardString: cardString)
+                value = Fits.HeaderCard.getValue(fromValueString: valueString)
+            }
             rawString = cardString
         }
         
@@ -70,7 +76,7 @@ extension Fits {
             }
         }
 
-        static func getComponents(fromCardString cardString: String) -> (String?, String?, String?) {
+        static func getComponents(fromCardString cardString: String) -> (String, String, String) {
             let keywordSplit = cardString.split(separator: "=", maxSplits: 1)
             let keyword = keywordSplit.first!.trimmingCharacters(in: .whitespaces)
             let valueSplit = keywordSplit.last!.split(separator: "/", maxSplits: 1)
