@@ -15,7 +15,7 @@ struct Fits {
     static let cardsPerRecord = 36
     
     var headerRecordCount = 0
-    var headerCards = [String]()
+    var headerCards = [HeaderCard]()
     
     init(fromUrl fileUrl: URL) {
         var bytes = [UInt8]()
@@ -23,28 +23,30 @@ struct Fits {
         for headerCardStartIndex in stride(from: 0, to: data.count, by: Fits.headerCardLength)
         {
             bytes = Array(data[headerCardStartIndex ..< headerCardStartIndex + Fits.headerCardLength])
-            let string = String(bytes: bytes, encoding: .ascii)!
-            if string.prefix(3) == "END" {
+            let headerCardString = String(bytes: bytes, encoding: .ascii)!
+            if headerCardString.prefix(3) == "END" {
                 headerRecordCount = (headerCardStartIndex / Fits.recordLength) + 1
                 break
             }
             else {
-                headerCards.append(string)
+                headerCards.append(HeaderCard(fromCardString: headerCardString))
             }
         }
     }
 }
 
 extension Fits {
-    struct Header {
+    struct HeaderCard {
         let keyword: String?
         let value: HeaderValue?
         let comment: String?
+        let rawString: String
         
         init(fromCardString cardString: String) {
             let valueString: String?
-            (keyword, valueString, comment) = Fits.Header.getComponents(fromCardString: cardString)
-            value = Fits.Header.getValue(fromValueString: valueString!)
+            (keyword, valueString, comment) = Fits.HeaderCard.getComponents(fromCardString: cardString)
+            value = Fits.HeaderCard.getValue(fromValueString: valueString!)
+            rawString = cardString
         }
         
         static func getValue(fromValueString valueString: String) -> HeaderValue {
@@ -68,13 +70,29 @@ extension Fits {
             }
         }
 
-        static func getComponents(fromCardString: String) -> (String?, String?, String?) {
-            let keywordSplit = fromCardString.split(separator: "=", maxSplits: 1)
+        static func getComponents(fromCardString cardString: String) -> (String?, String?, String?) {
+            let keywordSplit = cardString.split(separator: "=", maxSplits: 1)
             let keyword = keywordSplit.first!.trimmingCharacters(in: .whitespaces)
             let valueSplit = keywordSplit.last!.split(separator: "/", maxSplits: 1)
             let valueSubstring = valueSplit.first!.trimmingCharacters(in: .whitespaces)
             let comment = valueSplit.last!.trimmingCharacters(in: .whitespaces)
             return (keyword, valueSubstring, comment)
+        }
+        
+        static func getCommentaryComponents(fromCardString cardString: String) -> (String, String) {
+            return ("COMMENT", "")
+        }
+        
+        static func isCommentary(fromCardString cardString: String) -> Bool {
+            if cardString.hasPrefix("COMMENT") {
+                return true
+            } else if cardString.hasPrefix("HISTORY") {
+                return true
+            } else if cardString.hasPrefix("        ") {
+                return true
+            } else {
+                return false
+            }
         }
     }
     

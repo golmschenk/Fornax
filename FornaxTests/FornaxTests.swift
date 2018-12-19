@@ -37,7 +37,7 @@ class FornaxTests: XCTestCase {
     }
     
     func testHeaderCardsContainsFirstCard() {
-        XCTAssertEqual(fits.headerCards.first, "SIMPLE  =                    T / file does conform to FITS standard             ")
+        XCTAssertEqual(fits.headerCards.first!.rawString, "SIMPLE  =                    T / file does conform to FITS standard             ")
     }
     
     func testHeaderCardsContainsCorrectNumberOfHeaderCards() {
@@ -45,7 +45,7 @@ class FornaxTests: XCTestCase {
     }
     
     func testHeaderCardsContainsLastCard() {
-        XCTAssertEqual(fits.headerCards.last, "CD3_2   =                    0 /                                                ")
+        XCTAssertEqual(fits.headerCards.last!.rawString, "CD3_2   =                    0 /                                                ")
     }
     
     func testForPrimaryHeaderRecordCount() {
