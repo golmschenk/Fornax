@@ -23,9 +23,16 @@ class FunctionalTests: XCTestCase {
         let bundle = Bundle(for: type(of: self))
         let url = bundle.url(forResource: "ExampleFitsFile", withExtension: "fits")!
         let fits = Fits(fromUrl: url)
-        XCTAssertEqual(fits.headerCards.first {$0.keyword == "NAXIS"}, 3)
-        XCTAssertEqual(fits.headerCards.first {$0.keyword == "NAXIS1"}, 200)
-        XCTFail("Finish the test!")
+        let naxisCardValue = fits.headerCards.first{$0.keyword == "NAXIS"}!.value
+        switch naxisCardValue {
+        case .int(let intValue): XCTAssertEqual(intValue, 3)
+        default: XCTFail()
+        }
+        let naxis1CardValue = fits.headerCards.first{$0.keyword == "NAXIS1"}!.value
+        switch naxis1CardValue {
+        case .int(let intValue): XCTAssertEqual(intValue, 200)
+        default: XCTFail()
+        }
     }
 
 }
