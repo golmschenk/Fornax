@@ -46,6 +46,12 @@ class HeaderTests: XCTestCase {
         XCTAssertEqual(comment2, "number of data axes")
     }
     
+    func testSplittingOfHeaderCardStringWithoutCommentReturnsEmptyComment() {
+        let headerCardString1 = "CD1_1   =         -1.067040E-6                                                  "
+        let (_, _, comment1) = Fits.HeaderCard.getComponents(fromCardString: headerCardString1)
+        XCTAssertEqual(comment1, "")
+    }
+    
     func testForHeaderValue() {
         let _: Fits.HeaderValue
     }
@@ -260,4 +266,5 @@ class HeaderTests: XCTestCase {
         }
         XCTAssertEqual(header.comment, "")
     }
+
 }

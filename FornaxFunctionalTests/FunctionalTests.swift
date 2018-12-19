@@ -11,8 +11,6 @@ import XCTest
 
 class FunctionalTests: XCTestCase {
     
-    var path:String!
-
     override func setUp() {
     }
 

@@ -81,7 +81,12 @@ extension Fits {
             let keyword = keywordSplit.first!.trimmingCharacters(in: .whitespaces)
             let valueSplit = keywordSplit.last!.split(separator: "/", maxSplits: 1)
             let valueSubstring = valueSplit.first!.trimmingCharacters(in: .whitespaces)
-            let comment = valueSplit.last!.trimmingCharacters(in: .whitespaces)
+            let comment: String
+            if valueSplit.count == 1 {
+                comment = ""
+            } else {
+                comment = valueSplit.last!.trimmingCharacters(in: .whitespaces)
+            }
             return (keyword, valueSubstring, comment)
         }
         
