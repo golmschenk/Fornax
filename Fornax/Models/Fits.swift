@@ -36,20 +36,21 @@ struct Fits {
                 headerCards.append(HeaderCard(fromCardString: headerCardString))
             }
         }
+        let arrayShape = Fits.getArrayShape(fromHeaderCards: headerCards)
         array = np.array([1])
     }
     
-    func getArrayShapeFromHeader() -> [Int] {
+    static func getArrayShape(fromHeaderCards headerCards: [HeaderCard]) -> [Int] {
         let naxisCardValue = headerCards.first{$0.keyword == "NAXIS"}!.value
-        let number_of_axes: Int
+        let numberOfAxes: Int
         switch naxisCardValue {
         case .int(let intValue):
-            number_of_axes = intValue
+            numberOfAxes = intValue
         default:
             fatalError("NAXIS was not an integer. It was \(naxisCardValue)")
         }
         var shape = [Int]()
-        for n in 1 ... number_of_axes {
+        for n in 1 ... numberOfAxes {
             let axisCardValue = headerCards.first{$0.keyword == "NAXIS\(n)"}!.value
             switch axisCardValue {
             case .int(let intValue):

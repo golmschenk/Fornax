@@ -56,7 +56,7 @@ class FornaxTests: XCTestCase {
     }
     
     func testGettingArrayShapeFromHeader() {
-        let shape = fits.getArrayShapeFromHeader()
+        let shape = Fits.getArrayShape(fromHeaderCards: fits.headerCards)
         XCTAssertEqual(shape, [200, 200, 4])
     }
 }
