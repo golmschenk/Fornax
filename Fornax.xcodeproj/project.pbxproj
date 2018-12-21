@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		651D6A0321CC573D005A4A8F /* ArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651D6A0221CC573D005A4A8F /* ArrayTests.swift */; };
 		653607CF21B39BBC00FE59F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653607CE21B39BBC00FE59F6 /* AppDelegate.swift */; };
 		653607D121B39BBC00FE59F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653607D021B39BBC00FE59F6 /* ViewController.swift */; };
 		653607D321B39BBC00FE59F6 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653607D221B39BBC00FE59F6 /* Document.swift */; };
@@ -48,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		651D6A0221CC573D005A4A8F /* ArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayTests.swift; sourceTree = "<group>"; };
+		6531234521CC5B5E007D8DF4 /* libpython.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libpython.tbd; path = usr/lib/libpython.tbd; sourceTree = SDKROOT; };
 		653607CB21B39BBC00FE59F6 /* Fornax.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fornax.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653607CE21B39BBC00FE59F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		653607D021B39BBC00FE59F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +106,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6531234421CC5B5E007D8DF4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6531234521CC5B5E007D8DF4 /* libpython.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		653607C221B39BBC00FE59F6 = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +124,7 @@
 				6536080121B39C2600FE59F6 /* TestResources */,
 				6536081921B3A66C00FE59F6 /* SupportingFiles */,
 				653607CC21B39BBC00FE59F6 /* Products */,
+				6531234421CC5B5E007D8DF4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +159,7 @@
 				653607E621B39BBD00FE59F6 /* FornaxTests.swift */,
 				653607E821B39BBD00FE59F6 /* Info.plist */,
 				6584BA8921BF76B100CDE5E3 /* HeaderTests.swift */,
+				651D6A0221CC573D005A4A8F /* ArrayTests.swift */,
 			);
 			path = FornaxTests;
 			sourceTree = "<group>";
@@ -381,6 +394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				651D6A0321CC573D005A4A8F /* ArrayTests.swift in Sources */,
 				6584BA8A21BF76B100CDE5E3 /* HeaderTests.swift in Sources */,
 				653607E721B39BBD00FE59F6 /* FornaxTests.swift in Sources */,
 			);
@@ -671,12 +685,14 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = FornaxFunctionalTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				OTHER_LDFLAGS = "-lpython";
 				PRODUCT_BUNDLE_IDENTIFIER = com.golmschenk.FornaxFunctionalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -696,6 +712,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				OTHER_LDFLAGS = "-lpython";
 				PRODUCT_BUNDLE_IDENTIFIER = com.golmschenk.FornaxFunctionalTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

@@ -21,7 +21,6 @@ class FornaxTests: XCTestCase {
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
     func testForFits() {
@@ -50,5 +49,14 @@ class FornaxTests: XCTestCase {
     
     func testForPrimaryHeaderRecordCount() {
         XCTAssertEqual(fits.headerRecordCount, 8)
+    }
+    
+    func testForArray() {
+        XCTAssertNotNil(fits.array)
+    }
+    
+    func testGettingArrayShapeFromHeader() {
+        let shape = fits.getArrayShapeFromHeader()
+        XCTAssertEqual(shape, [200, 200, 4])
     }
 }

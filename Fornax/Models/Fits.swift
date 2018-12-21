@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import Python
+
+let np = Python.import("numpy")  // Not sure how I feel about this being a global, but referring to NumPy just as `np` makes the code much more clear.
 
 struct Fits {
 
@@ -16,6 +19,7 @@ struct Fits {
     
     var headerRecordCount = 0
     var headerCards = [HeaderCard]()
+    var array: PythonObject
     
     init(fromUrl fileUrl: URL) {
         var bytes = [UInt8]()
@@ -32,6 +36,29 @@ struct Fits {
                 headerCards.append(HeaderCard(fromCardString: headerCardString))
             }
         }
+        array = np.array([1])
+    }
+    
+    func getArrayShapeFromHeader() -> [Int] {
+        let naxisCardValue = headerCards.first{$0.keyword == "NAXIS"}!.value
+        let number_of_axes: Int
+        switch naxisCardValue {
+        case .int(let intValue):
+            number_of_axes = intValue
+        default:
+            fatalError("NAXIS was not an integer. It was \(naxisCardValue)")
+        }
+        var shape = [Int]()
+        for n in 1 ... number_of_axes {
+            let axisCardValue = headerCards.first{$0.keyword == "NAXIS\(n)"}!.value
+            switch axisCardValue {
+            case .int(let intValue):
+                shape.append(intValue)
+            default:
+                fatalError("NAXIS\(n) was not an integer. It was \(axisCardValue)")
+            }
+        }
+        return shape
     }
 }
 
