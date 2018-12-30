@@ -79,6 +79,21 @@ struct Fits {
         }
         return shape
     }
+    
+    func getHeaderCardValue<T>(withKeyword keyword: String, asType type: T.Type) -> T {
+        let cardValue = headerCards.first{$0.keyword == keyword}!.value
+        switch type {
+        case is Int.Type:
+            switch cardValue {
+            case .int(let intValue):
+                return intValue as! T
+            default:
+                fatalError("\(keyword) was not an integer. It was \(cardValue)")
+            }
+        default:
+            fatalError("\(type) is not a known header card type.")
+        }
+    }
 }
 
 extension Fits {

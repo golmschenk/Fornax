@@ -67,4 +67,9 @@ class FornaxTests: XCTestCase {
         XCTAssertEqual(Float(fits.array[198, 199, 3])!, 0.7588966, accuracy: 1e-5)
         XCTAssertEqual(Float(fits.array[199, 199, 3])!, 0.781659, accuracy: 1e-5)
     }
+    
+    func testGettingHeaderCardValueFunctionWithInt() {
+        let value = fits.getHeaderCardValue(withKeyword: "NAXIS", asType: Int.self)
+        XCTAssertEqual(value, 3)
+    }
 }
