@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Python
 @testable import Fornax
 
 class FornaxTests: XCTestCase {
@@ -58,5 +59,12 @@ class FornaxTests: XCTestCase {
     func testGettingArrayShapeFromHeader() {
         let shape = Fits.getArrayShape(fromHeaderCards: fits.headerCards)
         XCTAssertEqual(shape, [200, 200, 4])
+    }
+    
+    func testArrayElementsAreSetFromData() {
+        XCTAssertEqual(Float(fits.array[0, 0, 0])!, -1.5442986, accuracy: 1e-5)
+        XCTAssertEqual(Float(fits.array[1, 0, 0])!, 0.91693103, accuracy: 1e-5)
+        XCTAssertEqual(Float(fits.array[198, 199, 3])!, 0.7588966, accuracy: 1e-5)
+        XCTAssertEqual(Float(fits.array[199, 199, 3])!, 0.781659, accuracy: 1e-5)
     }
 }

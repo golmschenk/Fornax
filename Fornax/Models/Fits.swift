@@ -37,7 +37,25 @@ struct Fits {
             }
         }
         let arrayShape = Fits.getArrayShape(fromHeaderCards: headerCards)
-        array = np.array([1])
+        let arrayDataStart = headerRecordCount * Fits.recordLength
+        let bitpixCardValue = headerCards.first{$0.keyword == "BITPIX"}!.value
+        let bitpix: Int
+        switch bitpixCardValue {
+        case .int(let intValue):
+            bitpix = intValue
+        default:
+            fatalError("BITPIX was not an integer. It was \(bitpixCardValue)")
+        }
+        let arrayDataEnd = arrayShape.reduce(abs(bitpix) / 8, *) + arrayDataStart
+        let arrayData = data.subdata(in: arrayDataStart..<arrayDataEnd)
+        switch bitpix {
+        case -32: // float32
+            let swiftSwappedFloatArray = arrayData.toArray(type: CFSwappedFloat32.self)
+            let swiftFloatArray = swiftSwappedFloatArray.map(CFConvertFloat32SwappedToHost)
+            array = np.array(swiftFloatArray, np.float32).reshape(arrayShape, order: "F")
+        default:
+            fatalError("BITPIX was not a valid value. It was \(bitpix)")
+        }
     }
     
     static func getArrayShape(fromHeaderCards headerCards: [HeaderCard]) -> [Int] {
@@ -148,6 +166,18 @@ extension Fits {
         struct Complex {
             let real: Float64!
             let imaginary: Float64!
+        }
+    }
+}
+
+extension Data {  // Taken from https://stackoverflow.com/a/38024025/1191087
+    init<T>(fromArray values: [T]) {
+        self = values.withUnsafeBytes { Data($0) }
+    }
+        
+    func toArray<T>(type: T.Type) -> [T] {
+        return self.withUnsafeBytes {
+            [T](UnsafeBufferPointer(start: $0, count: self.count/MemoryLayout<T>.stride))
         }
     }
 }
