@@ -90,6 +90,13 @@ struct Fits {
             default:
                 fatalError("\(keyword) was not an integer. It was \(cardValue)")
             }
+        case is Bool.Type:
+            switch cardValue {
+            case .bool(let boolValue):
+                return boolValue as! T
+            default:
+                fatalError("\(keyword) was not an integer. It was \(cardValue)")
+            }
         default:
             fatalError("\(type) is not a known header card type.")
         }

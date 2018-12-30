@@ -72,4 +72,9 @@ class FornaxTests: XCTestCase {
         let value = fits.getHeaderCardValue(withKeyword: "NAXIS", asType: Int.self)
         XCTAssertEqual(value, 3)
     }
+    
+    func testGettingHeaderCardValueFunctionWithBool() {
+        let value = fits.getHeaderCardValue(withKeyword: "SIMPLE", asType: Bool.self)
+        XCTAssertEqual(value, true)
+    }
 }
