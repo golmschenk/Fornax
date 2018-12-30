@@ -58,29 +58,20 @@ struct Fits {
         }
     }
     
-    static func getArrayShape(fromHeaderCards headerCards: [HeaderCard]) -> [Int] {
-        let naxisCardValue = headerCards.first{$0.keyword == "NAXIS"}!.value
-        let numberOfAxes: Int
-        switch naxisCardValue {
-        case .int(let intValue):
-            numberOfAxes = intValue
-        default:
-            fatalError("NAXIS was not an integer. It was \(naxisCardValue)")
-        }
+    static func getArrayShape(fromHeaderCards headerCards: [Fits.HeaderCard]) -> [Int] {
+        let numberOfAxes = Fits.getHeaderCardValue(fromHeaderCards: headerCards, withKeyword: "NAXIS", asType: Int.self)
         var shape = [Int]()
         for n in 1 ... numberOfAxes {
-            let axisCardValue = headerCards.first{$0.keyword == "NAXIS\(n)"}!.value
-            switch axisCardValue {
-            case .int(let intValue):
-                shape.append(intValue)
-            default:
-                fatalError("NAXIS\(n) was not an integer. It was \(axisCardValue)")
-            }
+            shape.append(Fits.getHeaderCardValue(fromHeaderCards: headerCards,withKeyword: "NAXIS\(n)", asType: Int.self))
         }
         return shape
     }
     
     func getHeaderCardValue<T>(withKeyword keyword: String, asType type: T.Type) -> T {
+        return Fits.getHeaderCardValue(fromHeaderCards: headerCards, withKeyword: keyword, asType: type)
+    }
+    
+    static func getHeaderCardValue<T>(fromHeaderCards headerCards: [Fits.HeaderCard], withKeyword keyword: String, asType type: T.Type) -> T {
         let cardValue = headerCards.first{$0.keyword == keyword}!.value
         switch type {
         case is Int.Type:
