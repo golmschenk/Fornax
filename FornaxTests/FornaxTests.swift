@@ -93,4 +93,9 @@ class FornaxTests: XCTestCase {
         let value = fits.getHeaderCardValue(withKeyword: "COMPLEX", asType: Fits.HeaderValue.Complex.self)
         XCTAssertEqual(value, Fits.HeaderValue.Complex(real: 1, imaginary: 2))
     }
+    
+    func testGettingHeaderCardValueFunctionWithStaticFunction() {
+        let value = Fits.getHeaderCardValue(fromHeaderCards: fits.headerCards, withKeyword: "NAXIS", asType: Int.self)
+        XCTAssertEqual(value, 3)
+    }
 }

@@ -38,14 +38,7 @@ struct Fits {
         }
         let arrayShape = Fits.getArrayShape(fromHeaderCards: headerCards)
         let arrayDataStart = headerRecordCount * Fits.recordLength
-        let bitpixCardValue = headerCards.first{$0.keyword == "BITPIX"}!.value
-        let bitpix: Int
-        switch bitpixCardValue {
-        case .int(let intValue):
-            bitpix = intValue
-        default:
-            fatalError("BITPIX was not an integer. It was \(bitpixCardValue)")
-        }
+        let bitpix = Fits.getHeaderCardValue(fromHeaderCards: headerCards, withKeyword: "BITPIX", asType: Int.self)
         let arrayDataEnd = arrayShape.reduce(abs(bitpix) / 8, *) + arrayDataStart
         let arrayData = data.subdata(in: arrayDataStart..<arrayDataEnd)
         switch bitpix {
