@@ -87,4 +87,10 @@ class FornaxTests: XCTestCase {
         let value = fits.getHeaderCardValue(withKeyword: "FITSDATE", asType: String.self)
         XCTAssertEqual(value, "2004-01-09")
     }
+    
+    func testGettingHeaderCardValueFunctionWithComplex() {
+        fits.headerCards.append(Fits.HeaderCard(fromCardString: "COMPLEX = 1 2"))
+        let value = fits.getHeaderCardValue(withKeyword: "COMPLEX", asType: Fits.HeaderValue.Complex.self)
+        XCTAssertEqual(value, Fits.HeaderValue.Complex(real: 1, imaginary: 2))
+    }
 }
