@@ -77,4 +77,14 @@ class FornaxTests: XCTestCase {
         let value = fits.getHeaderCardValue(withKeyword: "SIMPLE", asType: Bool.self)
         XCTAssertEqual(value, true)
     }
+    
+    func testGettingHeaderCardValueFunctionWithFloat() {
+        let value = fits.getHeaderCardValue(withKeyword: "CD1_1", asType: Float64.self)
+        XCTAssertEqual(value, -1.067040E-6, accuracy: 1e-10)
+    }
+    
+    func testGettingHeaderCardValueFunctionWithString() {
+        let value = fits.getHeaderCardValue(withKeyword: "FITSDATE", asType: String.self)
+        XCTAssertEqual(value, "2004-01-09")
+    }
 }

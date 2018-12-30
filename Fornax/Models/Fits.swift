@@ -95,7 +95,21 @@ struct Fits {
             case .bool(let boolValue):
                 return boolValue as! T
             default:
-                fatalError("\(keyword) was not an integer. It was \(cardValue)")
+                fatalError("\(keyword) was not an boolean. It was \(cardValue)")
+            }
+        case is Float64.Type:
+            switch cardValue {
+            case .float(let floatValue):
+                return floatValue as! T
+            default:
+                fatalError("\(keyword) was not an float. It was \(cardValue)")
+            }
+        case is String.Type:
+            switch cardValue {
+            case .string(let stringValue):
+                return stringValue as! T
+            default:
+                fatalError("\(keyword) was not an string. It was \(cardValue)")
             }
         default:
             fatalError("\(type) is not a known header card type.")
