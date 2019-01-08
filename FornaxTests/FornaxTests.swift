@@ -10,6 +10,8 @@ import XCTest
 import Python
 @testable import Fornax
 
+let 🐛 = Python.slice(Python.None, Python.None, Python.None)
+
 class FornaxTests: XCTestCase {
 
     var url: URL!
@@ -97,5 +99,13 @@ class FornaxTests: XCTestCase {
     func testGettingHeaderCardValueFunctionWithStaticFunction() {
         let value = Fits.getHeaderCardValue(fromHeaderCards: fits.headerCards, withKeyword: "NAXIS", asType: Int.self)
         XCTAssertEqual(value, 3)
+    }
+    
+    func testApplyingColorMapToArray() {
+        let frame = fits.array[🐛, 🐛, 0]
+        let imageArray = Fits.color(array: frame)
+        XCTAssertEqual(imageArray[1, 158].map {Float($0)!}, [0, 0, 0, 1])
+        XCTAssertEqual(imageArray[0, 2].map {Float($0)!}, [1, 1, 1, 1])
+        XCTAssertEqual(imageArray[0, 0].map {Float($0)!}, [0.00392157, 0.00392157, 0.00392157, 1])
     }
 }

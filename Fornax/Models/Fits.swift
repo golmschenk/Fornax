@@ -10,6 +10,7 @@ import Foundation
 import Python
 
 let np = Python.import("numpy")  // Not sure how I feel about this being a global, but referring to NumPy just as `np` makes the code much more clear.
+let matPlotLibPlt = Python.import("matplotlib.pyplot")
 
 struct Fits {
 
@@ -105,6 +106,13 @@ struct Fits {
         default:
             fatalError("\(type) is not a known header card type.")
         }
+    }
+    
+    static func color(array: PythonObject) -> PythonObject
+    {
+        let norm = matPlotLibPlt.Normalize()
+        let colorsArray = matPlotLibPlt.cm.gray(norm(array))
+        return colorsArray
     }
 }
 

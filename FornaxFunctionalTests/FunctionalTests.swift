@@ -7,7 +7,10 @@
 //
 
 import XCTest
+import Python
 @testable import Fornax
+
+let 🐛 = Python.slice(Python.None, Python.None, Python.None)
 
 class FunctionalTests: XCTestCase {
     
@@ -37,11 +40,19 @@ class FunctionalTests: XCTestCase {
         let bundle = Bundle(for: type(of: self))
         let url = bundle.url(forResource: "ExampleFitsFile", withExtension: "fits")!
         let fits = Fits(fromUrl: url)
-        XCTAssertEqual(fits.array[0, 0, 0], 6.05212e-27)
-        XCTAssertEqual(fits.array[1, 0, 0], PythonObject(Float.nan))
-        XCTAssertEqual(fits.array[198, 199, 2], -0.0467138)
-        XCTAssertEqual(fits.array[199, 199, 2], -1.48388)
+        XCTAssertEqual(Float(fits.array[0, 0, 0])!, -1.5442986, accuracy: 1e-5)
+        XCTAssertEqual(Float(fits.array[1, 0, 0])!, 0.91693103, accuracy: 1e-5)
+        XCTAssertEqual(Float(fits.array[198, 199, 3])!, 0.7588966, accuracy: 1e-5)
+        XCTAssertEqual(Float(fits.array[199, 199, 3])!, 0.781659, accuracy: 1e-5)
+    }
+    
+    func testCanReadFitsArrayDataAsLinearGrayScaleImage() {
+        let bundle = Bundle(for: type(of: self))
+        let url = bundle.url(forResource: "ExampleFitsFile", withExtension: "fits")!
+        let fits = Fits(fromUrl: url)
+        let frame = fits.array[🐛, 🐛, 0]
+        let imageArray = Fits.color(array: frame)
+        XCTAssertEqual(frame[1, 158].map {Float($0)!}, [1, 1, 1, 1])
         XCTFail("Finish the test!")
     }
-
 }
