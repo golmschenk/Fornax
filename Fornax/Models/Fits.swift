@@ -111,7 +111,7 @@ struct Fits {
     static func color(array: PythonObject) -> PythonObject
     {
         let norm = matPlotLibPlt.Normalize()
-        let colorsArray = matPlotLibPlt.cm.gray(norm(array))
+        let colorsArray = matPlotLibPlt.cm.viridis(norm(array))
         return colorsArray
     }
 }
