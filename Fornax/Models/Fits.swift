@@ -56,7 +56,7 @@ struct Fits {
         let numberOfAxes = Fits.getHeaderCardValue(fromHeaderCards: headerCards, withKeyword: "NAXIS", asType: Int.self)
         var shape = [Int]()
         for n in 1 ... numberOfAxes {
-            shape.append(Fits.getHeaderCardValue(fromHeaderCards: headerCards,withKeyword: "NAXIS\(n)", asType: Int.self))
+            shape.append(Fits.getHeaderCardValue(fromHeaderCards: headerCards, withKeyword: "NAXIS\(n)", asType: Int.self))
         }
         return shape
     }
