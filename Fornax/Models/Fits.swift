@@ -47,6 +47,7 @@ struct Fits {
             let swiftSwappedFloatArray = arrayData.toArray(type: CFSwappedFloat32.self)
             let swiftFloatArray = swiftSwappedFloatArray.map(CFConvertFloat32SwappedToHost)
             array = np.array(swiftFloatArray, np.float32).reshape(arrayShape, order: "F")
+            array = np.transpose(array)  // Switch from Fortran order to C order.
         default:
             fatalError("BITPIX was not a valid value. It was \(bitpix)")
         }
