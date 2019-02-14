@@ -104,8 +104,8 @@ class FornaxTests: XCTestCase {
     func testApplyingColorMapToArray() {
         let frame = fits.array[0, 🐛, 🐛]
         let imageArray = Fits.color(array: frame)
-        XCTAssertEqual(imageArray[74, 104].map {Float($0)!}, [0.993248, 0.906157, 0.143936, 1])
-        XCTAssertEqual(imageArray[187, 18].map {Float($0)!}, [0.267004, 0.004874, 0.329415, 1])
-        XCTAssertEqual(imageArray[0, 0].map {Float($0)!}, [0.267004, 0.004874, 0.329415, 1])
+        XCTAssertEqual(imageArray[74, 104].map {UInt8($0)!}, [253, 231, 36, 255])
+        XCTAssertEqual(imageArray[187, 18].map {UInt8($0)!}, [68, 1, 84, 255])
+        XCTAssertEqual(imageArray[0, 0].map {UInt8($0)!}, [68, 1, 84, 255])
     }
 }

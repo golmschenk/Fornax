@@ -111,8 +111,9 @@ struct Fits {
     
     static func color(array: PythonObject) -> PythonObject
     {
-        let norm = matPlotLibPlt.Normalize()
-        let colorsArray = matPlotLibPlt.cm.viridis(norm(array))
+        let colorMap = matPlotLibPlt.get_cmap("viridis")
+        let scalarMap = matPlotLibPlt.cm.ScalarMappable(cmap: colorMap)
+        let colorsArray = scalarMap.to_rgba(array, bytes: true, norm: true)
         return colorsArray
     }
 }
