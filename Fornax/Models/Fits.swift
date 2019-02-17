@@ -8,6 +8,7 @@
 
 import Foundation
 import Python
+import AppKit
 
 let np = Python.import("numpy")  // Not sure how I feel about this being a global, but referring to NumPy just as `np` makes the code much more clear.
 let matPlotLibPlt = Python.import("matplotlib.pyplot")
@@ -207,6 +208,40 @@ extension Fits {
     }
 }
 
+extension Fits {  // Based off https://stackoverflow.com/a/30958731/1191087
+    static func imageFromRGBA32Data(data: [UInt8], width: Int, height: Int) -> NSImage? {
+        guard width > 0 && height > 0 else { return nil }
+        guard data.count == width * height * 4 else { return nil }
+        
+        let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+        let bitsPerComponent = 8
+        let bitsPerPixel = 32
+        
+        var mutableData = data // Copy to mutable []
+        guard let providerRef = CGDataProvider(data: NSData(bytes: &mutableData, length: mutableData.count * MemoryLayout<UInt8>.size)
+            )
+            else { return nil }
+        
+        guard let cgImage = CGImage(
+            width: width,
+            height: height,
+            bitsPerComponent: bitsPerComponent,
+            bitsPerPixel: bitsPerPixel,
+            bytesPerRow: width * MemoryLayout<UInt8>.size * 4,
+            space: rgbColorSpace,
+            bitmapInfo: bitmapInfo,
+            provider: providerRef,
+            decode: nil,
+            shouldInterpolate: true,
+            intent: .defaultIntent
+            )
+            else { return nil }
+        
+        return NSImage(cgImage: cgImage, size: NSZeroSize)
+    }
+}
+
 extension Data {  // Taken from https://stackoverflow.com/a/38024025/1191087
     init<T>(fromArray values: [T]) {
         self = values.withUnsafeBytes { Data($0) }
@@ -218,3 +253,4 @@ extension Data {  // Taken from https://stackoverflow.com/a/38024025/1191087
         }
     }
 }
+

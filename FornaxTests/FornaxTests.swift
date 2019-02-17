@@ -8,6 +8,7 @@
 
 import XCTest
 import Python
+import AppKit
 @testable import Fornax
 
 let 🐛 = Python.slice(Python.None, Python.None, Python.None)
@@ -107,5 +108,40 @@ class FornaxTests: XCTestCase {
         XCTAssertEqual(imageArray[74, 104].map {UInt8($0)!}, [253, 231, 36, 255])
         XCTAssertEqual(imageArray[187, 18].map {UInt8($0)!}, [68, 1, 84, 255])
         XCTAssertEqual(imageArray[0, 0].map {UInt8($0)!}, [68, 1, 84, 255])
+    }
+    
+    func testUIImageFromUInt8Array() {
+        let red: [UInt8] = [255, 0, 0, 255]
+        let green: [UInt8] = [0, 255, 0, 255]
+        let blue: [UInt8] = [0, 0, 255, 255]
+        var data: [UInt8] = []
+        data += red
+        data += red
+        data += red
+        data += green
+        data += green
+        data += green
+        data += blue
+        data += blue
+        data += blue
+        let image1 = Fits.imageFromRGBA32Data(data: data, width: 3, height: 3)
+        let bundle = Bundle(for: type(of: self))
+        let imageUrl = bundle.url(forResource: "RgbTestImage", withExtension: "tiff")!
+        let image2 = NSImage(contentsOf: imageUrl)
+        let data1 = image1?.tiffRepresentation!
+        XCTAssertNotNil(data1)
+        let bitmap1: NSBitmapImageRep! = NSBitmapImageRep(data: data1!)
+        let data2 = image2?.tiffRepresentation!
+        let bitmap2: NSBitmapImageRep! = NSBitmapImageRep(data: data2!)
+        for x in 0..<3
+        {
+            for y in 0..<3
+            {
+                let color1 = bitmap1.colorAt(x: x, y: y)!
+                let color2 = bitmap2.colorAt(x: x, y: y)!
+                XCTAssertEqual(color1, color2)
+            }
+        }
+        XCTAssertEqual(bitmap1.size, bitmap2.size)
     }
 }

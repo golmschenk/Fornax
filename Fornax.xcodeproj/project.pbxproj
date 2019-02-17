@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6512EBC92219BC0400D09A90 /* RgbTestImage.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6512EBC82219BC0400D09A90 /* RgbTestImage.tiff */; };
+		6512EBCA2219BC0400D09A90 /* RgbTestImage.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6512EBC82219BC0400D09A90 /* RgbTestImage.tiff */; };
+		6512EBCB2219BC0400D09A90 /* RgbTestImage.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6512EBC82219BC0400D09A90 /* RgbTestImage.tiff */; };
 		651D6A0321CC573D005A4A8F /* ArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651D6A0221CC573D005A4A8F /* ArrayTests.swift */; };
 		653607CF21B39BBC00FE59F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653607CE21B39BBC00FE59F6 /* AppDelegate.swift */; };
 		653607D121B39BBC00FE59F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653607D021B39BBC00FE59F6 /* ViewController.swift */; };
@@ -49,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6512EBC82219BC0400D09A90 /* RgbTestImage.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = RgbTestImage.tiff; sourceTree = "<group>"; };
 		651D6A0221CC573D005A4A8F /* ArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayTests.swift; sourceTree = "<group>"; };
 		6531234521CC5B5E007D8DF4 /* libpython.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libpython.tbd; path = usr/lib/libpython.tbd; sourceTree = SDKROOT; };
 		653607CB21B39BBC00FE59F6 /* Fornax.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fornax.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +180,7 @@
 		6536080121B39C2600FE59F6 /* TestResources */ = {
 			isa = PBXGroup;
 			children = (
+				6512EBC82219BC0400D09A90 /* RgbTestImage.tiff */,
 				65B6867A21D2E6CF00CF1EF3 /* ExampleFitsFile.fits */,
 			);
 			path = TestResources;
@@ -355,6 +360,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6512EBC92219BC0400D09A90 /* RgbTestImage.tiff in Resources */,
 				65B6867B21D2E6CF00CF1EF3 /* ExampleFitsFile.fits in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,6 +369,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6512EBCA2219BC0400D09A90 /* RgbTestImage.tiff in Resources */,
 				65B6867C21D2E6CF00CF1EF3 /* ExampleFitsFile.fits in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,6 +378,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6512EBCB2219BC0400D09A90 /* RgbTestImage.tiff in Resources */,
 				65B6867D21D2E6CF00CF1EF3 /* ExampleFitsFile.fits in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
